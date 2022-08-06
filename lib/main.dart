@@ -1,10 +1,14 @@
 import 'package:best_design/Binding/binding.dart';
-import 'package:best_design/widgets/BottonNavigation/home_layout.dart';
+import 'package:best_design/test.dart';
+import 'package:best_design/theme/theme.dart';
+import 'package:best_design/theme/theme_services.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
@@ -17,15 +21,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       initialBinding: Binding(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                statusBarColor: Colors.transparent,
-                statusBarIconBrightness: Brightness.dark,
-              ))),
-      home: const HomeLayout(),
+      theme: Themes().lightTheme,
+      darkTheme: Themes().darkTheme,
+      themeMode: ThemeServices().getThemeMode(),
+      home: const Test(),
     );
   }
 }

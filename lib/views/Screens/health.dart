@@ -1,3 +1,4 @@
+import 'package:best_design/views/Details/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:best_design/component/Home/app_bar.dart';
 import 'package:best_design/component/Home/carousel.dart';
@@ -31,15 +32,25 @@ class Health extends StatelessWidget {
                     child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemCount: controller.newshealth.length,
-                        itemBuilder: (context, index) => SingleChildScrollView(
-                              child: NewsContainer(
-                                image:
-                                    controller.newshealth[index].urlToImage ??
-                                        defaultImage,
-                                text: controller.newshealth[index].title
-                                    .toString(),
-                                date: controller.newshealth[index].publishedAt
-                                    .toString(),
+                        itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                    () => NewsDetail(
+                                          newsModel:
+                                              controller.newshealth[index],
+                                        ),
+                                    transition: Transition.leftToRight);
+                              },
+                              child: SingleChildScrollView(
+                                child: NewsContainer(
+                                  image:
+                                      controller.newshealth[index].urlToImage ??
+                                          defaultImage,
+                                  text: controller.newshealth[index].title
+                                      .toString(),
+                                  date: controller.newshealth[index].publishedAt
+                                      .toString(),
+                                ),
                               ),
                             )),
                   );

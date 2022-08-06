@@ -18,7 +18,7 @@ class NewsController extends GetxController {
   NewsApi newsApi = NewsApi();
 
   ////////////////////////////////
-  PageController pageController = PageController(initialPage: 0);
+  PageController pageController = PageController();
   late Timer _timer;
   int currentPage = 0;
   @override
@@ -32,6 +32,7 @@ class NewsController extends GetxController {
       pageController.animateToPage(currentPage,
           duration: const Duration(milliseconds: 700), curve: Curves.easeInOut);
     });
+
     super.onInit();
   }
 
@@ -53,7 +54,7 @@ class NewsController extends GetxController {
 
   getNewsGeneral() async {
     isLoading(true);
-    List myList = await newsApi.getTeslaData();
+    List myList = await newsApi.getApiData('general');
     teslaNews
         .addAll(myList.map<NewsModel>((e) => NewsModel.fromJson(e)).toList());
 

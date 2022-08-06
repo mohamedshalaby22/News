@@ -1,3 +1,4 @@
+import 'package:best_design/views/Details/detail.dart';
 import 'package:flutter/material.dart';
 import 'package:best_design/component/Home/app_bar.dart';
 import 'package:best_design/component/Home/carousel.dart';
@@ -31,16 +32,27 @@ class Science extends StatelessWidget {
                     child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
                         itemCount: controller.newsscience.length,
-                        itemBuilder: (context, index) => SingleChildScrollView(
-                              child: NewsContainer(
-                                image:
-                                    controller.newsscience[index].urlToImage ??
-                                        defaultImage,
-                                text: controller.newsscience[index].title
-                                    .toString(),
-                                date: controller.newsscience[index].publishedAt
-                                    .toString(),
-                                id: '5',
+                        itemBuilder: (context, index) => GestureDetector(
+                              onTap: () {
+                                Get.to(
+                                    () => NewsDetail(
+                                          newsModel:
+                                              controller.newsscience[index],
+                                        ),
+                                    transition: Transition.leftToRight);
+                              },
+                              child: SingleChildScrollView(
+                                child: NewsContainer(
+                                  image: controller
+                                          .newsscience[index].urlToImage ??
+                                      defaultImage,
+                                  text: controller.newsscience[index].title
+                                      .toString(),
+                                  date: controller
+                                      .newsscience[index].publishedAt
+                                      .toString(),
+                                  id: '5',
+                                ),
                               ),
                             )),
                   );

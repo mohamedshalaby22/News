@@ -1,10 +1,11 @@
+import 'package:best_design/component/Home/rich_text.dart';
 import 'package:best_design/component/search/search_field.dart';
 import 'package:best_design/constants/constant.dart';
 import 'package:best_design/controller/Api/news_controller.dart';
+import 'package:best_design/views/Details/detail.dart';
 import 'package:best_design/widgets/HomeWidgets/news_deco.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -15,22 +16,10 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text.rich(TextSpan(children: [
-          TextSpan(
-              text: 'S',
-              style: GoogleFonts.libreBaskerville(
-                  textStyle: TextStyle(
-                      color: primaryColor,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold))),
-          TextSpan(
-              text: 'earch',
-              style: GoogleFonts.libreBaskerville(
-                  textStyle: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold))),
-        ])),
+        title: RichTextWidget(
+          text1: 'S',
+          text2: 'earch',
+        ),
         leading: IconButton(
             onPressed: () {
               Get.back();
@@ -90,16 +79,26 @@ class SearchScreen extends StatelessWidget {
                   child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       itemCount: controller.newsSearch.length,
-                      itemBuilder: (context, index) => SingleChildScrollView(
-                            child: NewsContainer(
-                              image: controller.newsSearch[index].urlToImage ??
-                                  defaultImage,
-                              text:
-                                  controller.newsSearch[index].title.toString(),
-                              date: controller.newsSearch[index].publishedAt
-                                  .toString(),
-                              id: controller.newsSearch[index].source!.id
-                                  .toString(),
+                      itemBuilder: (context, index) => GestureDetector(
+                            onTap: () {
+                              Get.to(
+                                  () => NewsDetail(
+                                        newsModel: controller.newsSearch[index],
+                                      ),
+                                  transition: Transition.leftToRight);
+                            },
+                            child: SingleChildScrollView(
+                              child: NewsContainer(
+                                image:
+                                    controller.newsSearch[index].urlToImage ??
+                                        defaultImage,
+                                text: controller.newsSearch[index].title
+                                    .toString(),
+                                date: controller.newsSearch[index].publishedAt
+                                    .toString(),
+                                id: controller.newsSearch[index].source!.id
+                                    .toString(),
+                              ),
                             ),
                           )),
                 ),
