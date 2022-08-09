@@ -54,7 +54,7 @@ class NewsController extends GetxController {
 
   getNewsGeneral() async {
     isLoading(true);
-    List myList = await newsApi.getApiData('general');
+    List myList = await newsApi.getTeslaData();
     teslaNews
         .addAll(myList.map<NewsModel>((e) => NewsModel.fromJson(e)).toList());
 

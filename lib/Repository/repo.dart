@@ -6,7 +6,7 @@ class NewsApi {
   String baseUrl = 'https://newsapi.org';
   getApiData(String category) async {
     String url =
-        '$baseUrl/v2/top-headlines?country=eg&category=$category&apiKey=928319684f894686adf952ac7e4dadf0';
+        '$baseUrl/v2/top-headlines?country=us&category=$category&apiKey=928319684f894686adf952ac7e4dadf0';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -36,7 +36,7 @@ class NewsApi {
 
   getTeslaData() async {
     String url =
-        '$baseUrl/v2/everything?q=tesla&from=2022-07-05&sortBy=publishedAt&apiKey=928319684f894686adf952ac7e4dadf0';
+        '$baseUrl/v2/everything?q=tesla&apiKey=928319684f894686adf952ac7e4dadf0';
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
