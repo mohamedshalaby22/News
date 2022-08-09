@@ -12,6 +12,8 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     NewsController controller = Get.find<NewsController>();
     return Scaffold(
       appBar: AppBar(
@@ -24,9 +26,9 @@ class SearchScreen extends StatelessWidget {
             onPressed: () {
               Get.back();
             },
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.black,
+              color: isDark ? Colors.white : Colors.black,
             )),
       ),
       body: Obx(() {

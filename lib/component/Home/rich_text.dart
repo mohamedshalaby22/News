@@ -18,6 +18,8 @@ class RichTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Text.rich(TextSpan(children: [
       TextSpan(
           text: text1,
@@ -30,7 +32,7 @@ class RichTextWidget extends StatelessWidget {
           text: text2,
           style: GoogleFonts.libreBaskerville(
               textStyle: TextStyle(
-                  color: Colors.black,
+                  color: isDark ? Colors.white : Colors.black,
                   fontSize: size2,
                   fontWeight: FontWeight.bold))),
     ]));

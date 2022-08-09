@@ -99,7 +99,7 @@ class NewsController extends GetxController {
 
   getNewsSearch() async {
     isLoading(true);
-    List searchList = await newsApi.getALLApiData();
+    List searchList = await newsApi.getALLApiData('value');
     allNews.addAll(
         searchList.map<NewsModel>((e) => NewsModel.fromJson(e)).toList());
     isLoading(false);
@@ -110,11 +110,13 @@ class NewsController extends GetxController {
     newsSearch.value = allNews
         .where((search) => search.title!.toLowerCase().contains(value))
         .toList();
+    update();
   }
 
   clearSearch() {
     text.clear();
     searchList('');
+    update();
   }
 
 /////////////////////

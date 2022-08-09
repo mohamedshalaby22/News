@@ -16,6 +16,8 @@ class NewsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: Stack(
@@ -76,7 +78,14 @@ class NewsContainer extends StatelessWidget {
           const SizedBox(
             height: 15,
           ),
-          Positioned(bottom: 20, left: 157, child: Text(date))
+          Positioned(
+              bottom: 20,
+              left: 157,
+              child: Text(
+                date,
+                style: TextStyle(
+                    color: isDark ? Colors.black : Colors.grey.shade700),
+              ))
         ],
       ),
     );

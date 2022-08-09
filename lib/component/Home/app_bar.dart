@@ -15,6 +15,8 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return GetBuilder<NewsController>(
       init: Get.find<NewsController>(),
       builder: (controller) => AppBar(
@@ -23,10 +25,10 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
               onPressed: () {
                 Get.to(() => const SearchScreen(), transition: Transition.zoom);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.search,
                 size: 30,
-                color: Colors.black,
+                color: isDark ? Colors.white : Colors.black,
               )),
           Padding(
               padding: const EdgeInsets.only(right: 5),
@@ -37,6 +39,7 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
                     activeColor: primaryColor,
                     value: ThemeServices().isSavedDarkMode(),
                     onChanged: (value) {
+                      controller.changeSwitch(value);
                       ThemeServices().changeThemeMode();
                     }),
               )),

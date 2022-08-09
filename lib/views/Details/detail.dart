@@ -14,6 +14,8 @@ class NewsDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -53,7 +55,7 @@ class NewsDetail extends StatelessWidget {
                       newsModel!.description ??
                           'India\'s financial crime-fighting agency said on Friday it had frozen the assets of WazirX, linked to the world\'s  largest digital currency exchange Binance, as part of its investigation into suspected violation of foreign exchange regulations.',
                       style: TextStyle(
-                          color: Colors.grey.shade700,
+                          color: isDark ? Colors.white : Colors.grey.shade700,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                       maxLines: 4,
@@ -73,8 +75,8 @@ class NewsDetail extends StatelessWidget {
                         ),
                         Text(
                           newsModel!.source!.name ?? 'Fox Business',
-                          style: const TextStyle(
-                              color: Colors.black,
+                          style: TextStyle(
+                              color: isDark ? Colors.white : Colors.black,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
                           maxLines: 1,
@@ -97,7 +99,7 @@ class NewsDetail extends StatelessWidget {
                       newsModel!.content ??
                           'Just how much content has Warner Bros. Discovery axed since the WarnerMedia merger just a few months ago?  million worth. The company disclosed in a regulatory filing Friday that it has taken a … ',
                       style: TextStyle(
-                          color: Colors.grey.shade700,
+                          color: isDark ? Colors.white : Colors.grey.shade700,
                           fontWeight: FontWeight.bold,
                           fontSize: 17),
                       maxLines: 6,

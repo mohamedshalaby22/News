@@ -8,6 +8,8 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return GetBuilder<BottomNavigationBarController>(
       init: Get.find<BottomNavigationBarController>(),
       builder: (controller) => Scaffold(
@@ -15,7 +17,7 @@ class HomeLayout extends StatelessWidget {
             elevation: 10,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: primaryColor,
-            unselectedItemColor: Colors.grey.shade500,
+            unselectedItemColor: isDark ? Colors.white : Colors.grey.shade500,
             currentIndex: controller.currentIndex,
             onTap: (value) {
               controller.changeIndex(value);

@@ -1,5 +1,5 @@
 import 'package:best_design/Binding/binding.dart';
-import 'package:best_design/test.dart';
+import 'package:best_design/connection/check_connection.dart';
 import 'package:best_design/theme/theme.dart';
 import 'package:best_design/theme/theme_services.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,7 @@ import 'package:get_storage/get_storage.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
+
   runApp(const MyApp());
 }
 
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: Themes().lightTheme,
       darkTheme: Themes().darkTheme,
       themeMode: ThemeServices().getThemeMode(),
-      home: const Test(),
+      home: const CheckConnection(),
     );
   }
 }

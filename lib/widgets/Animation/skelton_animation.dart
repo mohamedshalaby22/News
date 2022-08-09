@@ -17,7 +17,6 @@ class Skelton extends StatelessWidget {
               animation: skeltonController.controller,
               builder: (context, _) {
                 return Container(
-                  // margin: const EdgeInsets.symmetric(horizontal: 15),
                   width: width,
                   height: height,
                   decoration: BoxDecoration(
